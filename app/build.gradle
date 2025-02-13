@@ -1,0 +1,51 @@
+plugins {
+    alias(libs.plugins.android.application) // Make sure this works with the plugins block
+}
+
+android {
+    namespace 'com.example.ayurnest'
+    compileSdk 35 // You've updated to SDK 35
+
+    defaultConfig {
+        applicationId "com.example.ayurnest"
+        minSdk 21
+        targetSdk 35// Updated target SDK to 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Added to handle dependencies (libs are being used here)
+    dependencies {
+        implementation libs.appcompat
+        implementation libs.material
+        implementation libs.activity // This should be compatible with compileSdk 35
+        implementation libs.constraintlayout
+        testImplementation libs.junit
+        androidTestImplementation libs.ext.junit
+        androidTestImplementation libs.espresso.core
+    }
+}
+
+dependencies {
+    // If you are using alias in 'libs' for dependencies
+    implementation 'androidx.appcompat:appcompat:1.6.1' // Example version
+    implementation 'com.google.android.material:material:1.7.0' // Example version
+    implementation 'androidx.activity:activity:1.10.0' // Make sure this version is compatible
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Example version
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
